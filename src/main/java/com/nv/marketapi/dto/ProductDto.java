@@ -8,14 +8,13 @@ import jakarta.validation.constraints.NotNull;
 import jakarta.validation.constraints.Pattern;
 
 public record ProductDto(
-		@NotBlank
-		@Pattern(regexp = "\\d{8,14}")
+		@NotNull
 		Long code,
 		@NotBlank
 		String description,
-		@NotBlank
+		@NotNull
 		BigDecimal cost,
-		@NotBlank
+		@NotNull
 		BigDecimal sell,
 		String internalDescription,
 		@NotNull

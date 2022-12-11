@@ -14,8 +14,7 @@ import lombok.NoArgsConstructor;
 @AllArgsConstructor
 @EqualsAndHashCode
 public class Distributor {
-	private Long id;
-	private Long cnpj;
+	private String cnpj;
 	private String name;
 	
 	public Distributor() {}
