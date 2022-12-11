@@ -3,6 +3,8 @@ package com.nv.marketapi.model;
 import java.math.BigDecimal;
 import java.time.LocalDateTime;
 
+import com.nv.marketapi.dto.ProductDto;
+
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
@@ -21,14 +23,19 @@ public class Product {
 	private BigDecimal costPrice;
 	private BigDecimal sellPrice;
 	private String internalDescription;
-//	private Fornecedor fornecedor;
-//	private LocalDateTime cadastro;
+	private LocalDateTime registration;
+	//	private Fornecedor fornecedor;
+	
+	public Product() {}
 
-	public Product(Long	code, String description, BigDecimal cost, BigDecimal sell) {
-		this.code = code;
-		this.description = stringLimiter(description, 50);
-		this.costPrice = cost;
-		this.sellPrice = sell;
+	//for registration of a product
+	public Product(ProductDto dto) {
+		this.code = dto.code();
+		this.description = stringLimiter(dto.description(), 50);
+		this.costPrice = dto.cost();
+		this.sellPrice = dto.sell();
+		this.internalDescription = stringLimiter(dto.internalDescription(), 100);
+		this.registration = LocalDateTime.now();
 		
 	}
 	
