@@ -50,6 +50,14 @@ public class Product {
 		this.distributor = new Distributor(dto.distributor());
 	}
 	
+	public Long getId() {
+		return id;
+	}
+
+	public void setId(Long id) {
+		this.id = id;
+	}
+
 	public Long getCode() {
 		return code;
 	}
@@ -104,10 +112,6 @@ public class Product {
 
 	public void setDistributor(Distributor distributor) {
 		this.distributor = distributor;
-	}
-
-	public String stringLimiter(String text, int max) {
-		return text.length() <= max ? text : text.substring(0, max);
 	}
 
 }
