@@ -5,15 +5,25 @@ import java.time.LocalDateTime;
 
 import com.nv.marketapi.dto.ProductDto;
 
+import jakarta.persistence.Embedded;
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
 import jakarta.persistence.Table;
-
+import lombok.AllArgsConstructor;
+import lombok.EqualsAndHashCode;
+import lombok.Getter;
+import lombok.NoArgsConstructor;
+import lombok.Setter;
 
 @Entity(name = "Product")
 @Table(name = "products")
+@Getter
+@Setter
+@NoArgsConstructor
+@AllArgsConstructor
+@EqualsAndHashCode(of = "id")
 public class Product {
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -24,11 +34,11 @@ public class Product {
 	private BigDecimal sellPrice;
 	private String internalDescription;
 	private LocalDateTime registration;
-	//	private Fornecedor fornecedor;
+	@Embedded
+	private Distributor distributor;
 	
 	public Product() {}
 
-	//for registration of a product
 	public Product(ProductDto dto) {
 		this.code = dto.code();
 		this.description = stringLimiter(dto.description(), 50);
@@ -36,7 +46,7 @@ public class Product {
 		this.sellPrice = dto.sell();
 		this.internalDescription = stringLimiter(dto.internalDescription(), 100);
 		this.registration = LocalDateTime.now();
-		
+		this.distributor = new Distributor(dto.distributor());
 	}
 	
 	public String stringLimiter(String text, int max) {
