@@ -1,6 +1,7 @@
 package com.nv.marketapi.model;
 
 import java.math.BigDecimal;
+import java.time.LocalDateTime;
 
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
@@ -20,9 +21,15 @@ public class Product {
 	private BigDecimal costPrice;
 	private BigDecimal sellPrice;
 	private String internalDescription;
+//	private Fornecedor fornecedor;
+//	private LocalDateTime cadastro;
 
-	public Product(String description) {
+	public Product(Long	code, String description, BigDecimal cost, BigDecimal sell) {
+		this.code = code;
 		this.description = stringLimiter(description, 50);
+		this.costPrice = cost;
+		this.sellPrice = sell;
+		
 	}
 	
 	public String stringLimiter(String text, int max) {
